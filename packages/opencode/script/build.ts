@@ -176,7 +176,7 @@ for (const item of targets) {
       autoloadTsconfig: true,
       autoloadPackageJson: true,
       target: name.replace(pkg.name, "bun") as any,
-      outfile: `dist/${name}/bin/opencode`,
+      outfile: `dist/${name}/bin/kytheracode`,
       execArgv: [`--user-agent=opencode/${Script.version}`, "--use-system-ca", "--"],
       windows: {},
     },
@@ -205,7 +205,7 @@ for (const item of targets) {
   // Embedding the bundle invalidates the linker's ad-hoc signature, and macOS 27+
   // SIGKILLs binaries with invalid pages. Re-sign ad-hoc; release CI re-signs with Developer ID.
   if (item.os === "darwin" && process.platform === "darwin") {
-    await $`codesign --force --sign - dist/${name}/bin/opencode`
+    await $`codesign --force --sign - dist/${name}/bin/kytheracode`
   }
 
   // Smoke test: only run if binary is for current platform
@@ -215,7 +215,7 @@ for (const item of targets) {
     item.arch === process.arch &&
     !item.abi
   ) {
-    const binaryPath = `dist/${name}/bin/opencode`
+    const binaryPath = `dist/${name}/bin/kytheracode`
     console.log(`Running smoke test: ${binaryPath} --version`)
     try {
       const versionOutput = await $`${binaryPath} --version`.text()
