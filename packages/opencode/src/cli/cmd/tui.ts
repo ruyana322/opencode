@@ -115,7 +115,7 @@ export const TuiThreadCommand = cmd({
     withNetworkOptions(yargs)
       .positional("project", {
         type: "string",
-        describe: "path to start opencode in",
+        describe: "path to start kytheracode in",
       })
       .option("model", {
         type: "string",
