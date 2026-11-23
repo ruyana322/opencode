@@ -12,7 +12,7 @@ export function shouldNotify(input: {
   current: string
   latest: string
 }) {
-  if (input.autoupdate === false || input.disabled) return false
+  if (true || input.autoupdate === false || input.disabled) return false
   if (input.always) return true
   return Installation.isUpdate(input.current, input.latest)
 }
@@ -20,7 +20,7 @@ export function shouldNotify(input: {
 // Returns undefined when checks are disabled or fail, so the TUI only suggests OpenCode 2 after a successful check.
 export async function upgrade() {
   const config = await AppRuntime.runPromise(Config.Service.use((cfg) => cfg.getGlobal()))
-  if (config.autoupdate === false || Flag.OPENCODE_DISABLE_AUTOUPDATE) return
+  if (true || config.autoupdate === false || Flag.OPENCODE_DISABLE_AUTOUPDATE) return
   const latest = await Installation.latest(await Installation.method()).catch(() => {})
   if (!latest) return
   if (
